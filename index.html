@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f3ee">
+  <meta name="description" content="Keyhaus makes considered mechanical keyboards for people who take their play seriously.">
+  <title>Keyhaus — Keys to your next level</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f4f3ee;
+      --ink: #151716;
+      --muted: #777973;
+      --line: #d8d8d0;
+      --lime: #d8fa54;
+      --white: #fff;
+      --display: 'Manrope', sans-serif;
+      --mono: 'DM Mono', monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--display); -webkit-font-smoothing: antialiased; }
+    button, select { color: inherit; font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+    .announcement { height: 34px; display: flex; justify-content: center; align-items: center; background: var(--lime); font: 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .topbar { height: 76px; padding: 0 6.1%; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+    .brand { display: inline-flex; align-items: center; gap: 9px; font-size: 22px; font-weight: 800; letter-spacing: -.08em; }
+    .brand-mark { width: 22px; height: 22px; display: grid; grid-template-columns: repeat(2,1fr); gap: 3px; transform: rotate(-8deg); }
+    .brand-mark i { display: block; background: var(--ink); border-radius: 2px; }
+    .brand-mark i:nth-child(2) { background: #9dbd35; }
+    .brand-mark i:nth-child(3) { background: #9dbd35; }
+    .nav-links { display: flex; gap: 37px; margin-left: 70px; font-size: 12px; font-weight: 700; }
+    .nav-links a { transition: opacity .2s; }
+    .nav-links a:hover { opacity: .55; }
+    .nav-actions { display: flex; align-items: center; gap: 21px; }
+    .icon-button { display: inline-flex; align-items: center; gap: 8px; border: 0; background: transparent; padding: 8px; font: 10px var(--mono); }
+    .icon-button svg { width: 18px; height: 18px; }
+    .cart-count { width: 17px; height: 17px; display: inline-grid; place-items: center; background: var(--lime); border-radius: 50%; font: 10px var(--mono); }
+    .hero { min-height: 475px; display: grid; grid-template-columns: 1fr 1fr; padding: 0 6.1%; overflow: hidden; border-bottom: 1px solid var(--line); }
+    .hero-copy { align-self: center; padding: 60px 0 70px; position: relative; z-index: 1; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; margin: 0 0 23px; font: 10px var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+    .eyebrow::before { content: ''; width: 18px; height: 1px; background: currentColor; }
+    h1 { max-width: 530px; margin: 0; font-size: clamp(50px, 6vw, 80px); line-height: .99; letter-spacing: -.075em; font-weight: 700; }
+    h1 span { color: #98b538; }
+    .hero-description { max-width: 360px; margin: 24px 0 29px; color: #5f625b; font-size: 13px; line-height: 1.8; }
+    .primary-link { display: inline-flex; height: 46px; padding: 0 19px; align-items: center; gap: 25px; background: var(--ink); color: white; font: 10px var(--mono); text-transform: uppercase; transition: background .2s, color .2s; }
+    .primary-link:hover { background: var(--lime); color: var(--ink); }
+    .primary-link svg { width: 15px; height: 15px; }
+    .hero-art { min-height: 475px; position: relative; display: flex; align-items: center; justify-content: center; }
+    .hero-art::before { content: ''; position: absolute; width: 420px; height: 420px; top: 32px; left: 50%; transform: translateX(-50%); border-radius: 50%; background: #e6e8dc; }
+    .hero-image { position: relative; width: min(550px, 115%); height: 370px; object-fit: cover; object-position: center; border-radius: 2px; filter: saturate(.82); transform: rotate(-7deg) translate(5px, 7px); box-shadow: 18px 25px 60px #26271e2a; animation: settle .7s ease-out both; }
+    .hero-sticker { position: absolute; right: 2%; bottom: 60px; width: 83px; height: 83px; display: grid; place-content: center; text-align: center; border-radius: 50%; background: var(--lime); transform: rotate(10deg); font: 9px/1.45 var(--mono); text-transform: uppercase; }
+    .hero-sticker strong { display: block; font-size: 18px; }
+    @keyframes settle { from { opacity: 0; transform: rotate(-11deg) translate(40px, 20px); } to { opacity: 1; transform: rotate(-7deg) translate(5px, 7px); } }
+    .ticker { height: 52px; padding: 0 6.1%; display: flex; align-items: center; justify-content: space-between; gap: 20px; background: #e9e9e2; font: 9px var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+    .ticker span { display: flex; align-items: center; gap: 9px; white-space: nowrap; }
+    .ticker b { font-size: 15px; font-weight: 400; color: #91aa3d; }
+    .shop { padding: 67px 6.1% 86px; scroll-margin-top: 20px; }
+    .section-top { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 28px; }
+    .section-kicker { margin: 0 0 10px; color: var(--muted); font: 9px var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+    h2 { margin: 0; font-size: 37px; line-height: 1.05; letter-spacing: -.065em; }
+    .sort-control { display: flex; align-items: center; gap: 12px; color: var(--muted); font: 9px var(--mono); text-transform: uppercase; }
+    .sort-control select { border: 0; outline: 0; background: transparent; font: 10px var(--mono); text-transform: uppercase; cursor: pointer; }
+    .filters { display: flex; gap: 7px; padding: 0 0 22px; border-bottom: 1px solid var(--line); margin-bottom: 23px; overflow-x: auto; }
+    .filter-button { padding: 9px 14px; border: 1px solid var(--line); background: transparent; border-radius: 2px; white-space: nowrap; font: 9px var(--mono); text-transform: uppercase; transition: .2s; }
+    .filter-button:hover, .filter-button.active { background: var(--ink); color: white; border-color: var(--ink); }
+    .product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 30px 16px; }
+    .product-card { min-width: 0; animation: reveal .4s ease both; }
+    @keyframes reveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .product-visual { height: 225px; position: relative; overflow: hidden; background: #e8e7e0; }
+    .product-visual img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+    .product-card:hover .product-visual img { transform: scale(1.045); }
+    .tag { position: absolute; top: 11px; left: 11px; padding: 6px 8px; background: var(--lime); font: 8px var(--mono); text-transform: uppercase; }
+    .quick-add { position: absolute; right: 10px; bottom: 10px; width: 36px; height: 36px; display: grid; place-items: center; border: 0; background: var(--white); transition: background .2s, transform .2s; }
+    .quick-add:hover { background: var(--lime); transform: rotate(90deg); }
+    .quick-add svg { width: 16px; height: 16px; }
+    .product-info { padding: 13px 1px 0; }
+    .product-meta { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+    .product-name { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: -.025em; }
+    .price { font: 11px var(--mono); white-space: nowrap; }
+    .product-detail { margin: 6px 0 0; color: var(--muted); font: 9px var(--mono); }
+    .swatches { display: flex; gap: 5px; margin-top: 11px; }
+    .swatch { width: 10px; height: 10px; border: 1px solid #0002; border-radius: 50%; }
+    .no-results { display: none; grid-column: 1/-1; padding: 55px 0; color: var(--muted); font: 12px var(--mono); text-align: center; }
+    .feature-band { padding: 43px 6.1%; display: grid; grid-template-columns: 1fr 1fr 1fr; background: #1e211d; color: white; }
+    .feature { padding: 5px 28px; border-right: 1px solid #ffffff29; }
+    .feature:first-child { padding-left: 0; }
+    .feature:last-child { border: 0; }
+    .feature-number { color: var(--lime); font: 9px var(--mono); }
+    .feature h3 { margin: 12px 0 7px; font-size: 14px; letter-spacing: -.03em; }
+    .feature p { max-width: 250px; margin: 0; color: #b4b7ad; font-size: 10px; line-height: 1.7; }
+    footer { padding: 27px 6.1%; display: flex; align-items: center; justify-content: space-between; gap: 15px; font: 9px var(--mono); color: var(--muted); }
+    .footer-brand { color: var(--ink); font: 700 16px var(--display); letter-spacing: -.07em; }
+    .footer-links { display: flex; gap: 20px; }
+    .overlay { position: fixed; inset: 0; z-index: 5; background: #1118; opacity: 0; visibility: hidden; transition: .25s; }
+    .overlay.open { opacity: 1; visibility: visible; }
+    .cart-drawer { position: fixed; z-index: 6; top: 0; right: 0; bottom: 0; width: min(420px, 100%); padding: 25px; background: var(--paper); transform: translateX(100%); transition: transform .3s ease; display: flex; flex-direction: column; }
+    .cart-drawer.open { transform: translateX(0); }
+    .cart-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+    .cart-header h2 { font-size: 22px; }
+    .close-cart { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid var(--line); background: transparent; }
+    .close-cart svg { width: 16px; height: 16px; }
+    .cart-items { flex: 1; overflow: auto; }
+    .empty-cart { padding: 45px 0; color: var(--muted); font: 11px var(--mono); text-align: center; }
+    .cart-item { display: grid; grid-template-columns: 75px 1fr auto; gap: 13px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+    .cart-item img { width: 75px; height: 67px; object-fit: cover; }
+    .cart-item h3 { margin: 2px 0 6px; font-size: 11px; }
+    .cart-item p { margin: 0; color: var(--muted); font: 9px var(--mono); }
+    .cart-item-price { font: 10px var(--mono); }
+    .quantity-control { display: flex; align-items: center; gap: 8px; margin-top: 11px; font: 10px var(--mono); }
+    .quantity-control button { width: 20px; height: 20px; border: 1px solid var(--line); background: transparent; }
+    .remove-item { margin-top: 9px; padding: 0; border: 0; background: transparent; color: var(--muted); font: 8px var(--mono); text-decoration: underline; }
+    .cart-footer { padding-top: 18px; border-top: 1px solid var(--line); }
+    .subtotal { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 12px; font-weight: 700; }
+    .shipping-note { margin: 0 0 17px; color: var(--muted); font: 9px var(--mono); }
+    .checkout-button { width: 100%; height: 47px; display: flex; align-items: center; justify-content: space-between; padding: 0 15px; border: 0; background: var(--lime); font: 10px var(--mono); text-transform: uppercase; }
+    .toast { position: fixed; z-index: 8; left: 50%; bottom: 24px; padding: 12px 18px; background: var(--ink); color: white; font: 10px var(--mono); transform: translate(-50%, 20px); opacity: 0; transition: .25s; pointer-events: none; }
+    .toast.show { transform: translate(-50%, 0); opacity: 1; }
+    @media (max-width: 850px) {
+      .topbar { padding: 0 5%; }
+      .nav-links { margin-left: 0; gap: 19px; }
+      .hero { padding: 0 5%; }
+      .hero-art::before { width: 340px; height: 340px; }
+      .hero-image { height: 305px; }
+      .shop { padding-left: 5%; padding-right: 5%; }
+      .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 14px; }
+      .product-visual { height: clamp(180px, 32vw, 270px); }
+      .ticker { padding: 0 5%; }
+    }
+    @media (max-width: 560px) {
+      .announcement { font-size: 8px; }
+      .topbar { height: 64px; padding: 0 5%; }
+      .brand { font-size: 19px; }
+      .nav-links { display: none; }
+      .nav-actions { gap: 8px; }
+      .icon-button { gap: 5px; padding: 6px; }
+      .hero { display: flex; flex-direction: column; padding: 0 5%; }
+      .hero-copy { padding: 51px 0 4px; }
+      h1 { font-size: clamp(52px, 15vw, 72px); }
+      .hero-description { margin: 18px 0 21px; font-size: 12px; }
+      .hero-art { min-height: 280px; }
+      .hero-art::before { width: 260px; height: 260px; top: 10px; }
+      .hero-image { width: 94%; height: 210px; }
+      .hero-sticker { right: 0; bottom: 20px; width: 68px; height: 68px; font-size: 7px; }
+      .hero-sticker strong { font-size: 15px; }
+      .ticker { height: 44px; overflow: hidden; justify-content: center; }
+      .ticker span:nth-child(n+3) { display: none; }
+      .shop { padding: 47px 5% 58px; }
+      .section-top { align-items: end; }
+      h2 { font-size: 31px; }
+      .sort-control { gap: 4px; font-size: 8px; }
+      .sort-control label { display: none; }
+      .filters { margin-bottom: 17px; }
+      .filter-button { padding: 8px 11px; font-size: 8px; }
+      .product-grid { gap: 22px 11px; }
+      .product-visual { height: 160px; }
+      .product-name { font-size: 11px; }
+      .price { font-size: 9px; }
+      .product-detail { font-size: 8px; }
+      .tag { top: 7px; left: 7px; padding: 5px 6px; font-size: 7px; }
+      .quick-add { width: 30px; height: 30px; right: 7px; bottom: 7px; }
+      .feature-band { padding: 29px 5%; grid-template-columns: 1fr; }
+      .feature, .feature:first-child { padding: 17px 0; border-right: 0; border-bottom: 1px solid #ffffff29; }
+      .feature:last-child { border: 0; }
+      .feature h3 { margin: 7px 0 4px; }
+      footer { padding: 22px 5%; flex-wrap: wrap; }
+      .footer-links { gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement">Free shipping on orders over $100 <span aria-hidden="true">&nbsp;·&nbsp;</span> Made for the long game</div>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Keyhaus home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>keyhaus</a>
+    <nav class="nav-links" aria-label="Main navigation"><a href="#shop">Keyboards</a><a href="#why-keyhaus">Our standard</a><a href="#footer">About</a></nav>
+    <div class="nav-actions">
+      <button class="icon-button" id="open-cart" aria-label="Open shopping cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 4h2l2.2 11.1a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 1.9-1.5L22 8H6"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+        <span>Bag</span><span class="cart-count" id="cart-count">0</span>
+      </button>
+    </div>
+  </header>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Purpose-built peripherals</p>
+        <h1 id="hero-title">Find your<br>flow state<span>.</span></h1>
+        <p class="hero-description">The right keyboard changes the way you play. Meet thoughtful builds, satisfying switches, and gear that keeps up.</p>
+        <a class="primary-link" href="#shop">Shop keyboards <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
+      </div>
+      <div class="hero-art">
+        <img class="hero-image" src="https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=1100&q=85" alt="Mechanical keyboard with custom keycaps on a desk">
+        <div class="hero-sticker"><strong>01—04</strong>Find your<br>perfect build</div>
+      </div>
+    </section>
+    <div class="ticker" aria-label="Store benefits"><span><b>✳</b> Tested by players</span><span><b>✳</b> Thoughtful by design</span><span><b>✳</b> Free shipping over $100</span><span><b>✳</b> 30-day returns</span></div>
+    <section class="shop" id="shop" aria-labelledby="shop-title">
+      <div class="section-top">
+        <div><p class="section-kicker">The lineup / 2026</p><h2 id="shop-title">Pick your weapon.</h2></div>
+        <div class="sort-control"><label for="sort">Sort by</label><select id="sort" aria-label="Sort products"><option value="featured">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select></div>
+      </div>
+      <div class="filters" role="group" aria-label="Filter keyboards">
+        <button class="filter-button active" data-filter="all">All keyboards <span>(04)</span></button>
+        <button class="filter-button" data-filter="compact">Compact</button>
+        <button class="filter-button" data-filter="wireless">Wireless</button>
+        <button class="filter-button" data-filter="full-size">Full size</button>
+      </div>
+      <div class="product-grid" id="product-grid" aria-live="polite">
+        <article class="product-card" data-category="compact wireless" data-price="129" data-name="Arc 65">
+          <div class="product-visual"><img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80" alt="Arc 65 compact mechanical keyboard" loading="lazy"><span class="tag">Bestseller</span><button class="quick-add" aria-label="Add Arc 65 to bag" data-add="arc65"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg></button></div>
+          <div class="product-info"><div class="product-meta"><h3 class="product-name">Arc 65</h3><span class="price">$129</span></div><p class="product-detail">65% · Wireless · Linear</p><div class="swatches" aria-label="Available colors"><i class="swatch" style="background:#d6d2c6"></i><i class="swatch" style="background:#41433c"></i><i class="swatch" style="background:#b7c6aa"></i></div></div>
+        </article>
+        <article class="product-card" data-category="compact" data-price="89" data-name="Mono 60">
+          <div class="product-visual"><img src="https://images.unsplash.com/photo-1595044426077-d36d9236d54a?auto=format&fit=crop&w=800&q=80" alt="Mono 60 minimalist compact keyboard" loading="lazy"><span class="tag">First build</span><button class="quick-add" aria-label="Add Mono 60 to bag" data-add="mono60"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg></button></div>
+          <div class="product-info"><div class="product-meta"><h3 class="product-name">Mono 60</h3><span class="price">$89</span></div><p class="product-detail">60% · Wired · Tactile</p><div class="swatches" aria-label="Available colors"><i class="swatch" style="background:#d8d8d4"></i><i class="swatch" style="background:#8f9a8b"></i></div></div>
+        </article>
+        <article class="product-card" data-category="wireless full-size" data-price="179" data-name="Shift 98">
+          <div class="product-visual"><img src="https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=800&q=80" alt="Shift 98 wireless keyboard with number pad" loading="lazy"><span class="tag">New</span><button class="quick-add" aria-label="Add Shift 98 to bag" data-add="shift98"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg></button></div>
+          <div class="product-info"><div class="product-meta"><h3 class="product-name">Shift 98</h3><span class="price">$179</span></div><p class="product-detail">98% · Wireless · Hot-swap</p><div class="swatches" aria-label="Available colors"><i class="swatch" style="background:#333832"></i><i class="swatch" style="background:#e2d8c6"></i></div></div>
+        </article>
+        <article class="product-card" data-category="full-size" data-price="149" data-name="Heavy Metal">
+          <div class="product-visual"><img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=800&q=80" alt="Heavy Metal full-size gaming keyboard" loading="lazy"><span class="tag">Player pick</span><button class="quick-add" aria-label="Add Heavy Metal to bag" data-add="heavymetal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg></button></div>
+          <div class="product-info"><div class="product-meta"><h3 class="product-name">Heavy Metal</h3><span class="price">$149</span></div><p class="product-detail">100% · Wired · Clicky</p><div class="swatches" aria-label="Available colors"><i class="swatch" style="background:#242726"></i><i class="swatch" style="background:#8e3e35"></i></div></div>
+        </article>
+        <p class="no-results" id="no-results">No keyboards in this category yet.</p>
+      </div>
+    </section>
+    <section class="feature-band" id="why-keyhaus" aria-label="Why Keyhaus">
+      <div class="feature"><span class="feature-number">01 / FEEL</span><h3>Every keystroke, considered.</h3><p>Switches chosen for a crisp, consistent feel from the first match to the last.</p></div>
+      <div class="feature"><span class="feature-number">02 / BUILD</span><h3>Built to be played.</h3><p>Solid cases, tested parts, and hot-swap options that make upgrades easy.</p></div>
+      <div class="feature"><span class="feature-number">03 / SUPPORT</span><h3>Good gear. No guesswork.</h3><p>30-day returns and real humans ready to help you find your fit.</p></div>
+    </section>
+  </main>
+  <footer id="footer"><a class="footer-brand" href="#top">keyhaus</a><span>Good keys. Better sessions. © 2026 Keyhaus</span><div class="footer-links"><a href="#shop">Shop</a><a href="mailto:hello@keyhaus.example">Contact</a><a href="#why-keyhaus">Our standard</a></div></footer>
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping bag" aria-hidden="true">
+    <div class="cart-header"><h2>Your bag <span id="cart-item-count">(0)</span></h2><button class="close-cart" id="close-cart" aria-label="Close shopping cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-footer"><div class="subtotal"><span>Subtotal</span><span id="subtotal">$0</span></div><p class="shipping-note">Shipping calculated at checkout.</p><button class="checkout-button" id="checkout">Continue to checkout <span>↗</span></button></div>
+  </aside>
+  <div class="toast" id="toast" role="status" aria-live="polite">Added to your bag</div>
+  <script>
+    const products = {
+      arc65: { name: 'Arc 65', price: 129, detail: '65% · Wireless · Linear', image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=300&q=75' },
+      mono60: { name: 'Mono 60', price: 89, detail: '60% · Wired · Tactile', image: 'https://images.unsplash.com/photo-1595044426077-d36d9236d54a?auto=format&fit=crop&w=300&q=75' },
+      shift98: { name: 'Shift 98', price: 179, detail: '98% · Wireless · Hot-swap', image: 'https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=300&q=75' },
+      heavymetal: { name: 'Heavy Metal', price: 149, detail: '100% · Wired · Clicky', image: 'https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=300&q=75' }
+    };
+    const cart = {};
+    const grid = document.getElementById('product-grid');
+    const cartDrawer = document.getElementById('cart-drawer');
+    const overlay = document.getElementById('overlay');
+    const money = amount => `$${amount.toLocaleString('en-US')}`;
+
+    function updateCart() {
+      const entries = Object.entries(cart);
+      const itemCount = entries.reduce((sum, [, quantity]) => sum + quantity, 0);
+      const total = entries.reduce((sum, [id, quantity]) => sum + products[id].price * quantity, 0);
+      document.getElementById('cart-count').textContent = itemCount;
+      document.getElementById('cart-item-count').textContent = `(${itemCount})`;
+      document.getElementById('subtotal').textContent = money(total);
+      const container = document.getElementById('cart-items');
+      if (!entries.length) {
+        container.innerHTML = '<p class="empty-cart">Your bag is taking a breather.</p>';
+        return;
+      }
+      container.innerHTML = entries.map(([id, quantity]) => {
+        const product = products[id];
+        return `<div class="cart-item"><img src="${product.image}" alt=""><div><h3>${product.name}</h3><p>${product.detail}</p><div class="quantity-control"><button data-quantity="${id}" data-change="-1" aria-label="Remove one ${product.name}">−</button><span>${quantity}</span><button data-quantity="${id}" data-change="1" aria-label="Add one ${product.name}">+</button></div><button class="remove-item" data-remove="${id}">Remove</button></div><span class="cart-item-price">${money(product.price * quantity)}</span></div>`;
+      }).join('');
+    }
+    function setCartOpen(isOpen) {
+      cartDrawer.classList.toggle('open', isOpen);
+      overlay.classList.toggle('open', isOpen);
+      cartDrawer.setAttribute('aria-hidden', String(!isOpen));
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+      if (isOpen) document.getElementById('close-cart').focus();
+    }
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => toast.classList.remove('show'), 1800);
+    }
+    document.addEventListener('click', event => {
+      const addButton = event.target.closest('[data-add]');
+      if (addButton) {
+        const id = addButton.dataset.add;
+        cart[id] = (cart[id] || 0) + 1;
+        updateCart();
+        showToast(`${products[id].name} added to your bag`);
+      }
+      const quantityButton = event.target.closest('[data-quantity]');
+      if (quantityButton) {
+        const id = quantityButton.dataset.quantity;
+        cart[id] += Number(quantityButton.dataset.change);
+        if (cart[id] <= 0) delete cart[id];
+        updateCart();
+      }
+      const removeButton = event.target.closest('[data-remove]');
+      if (removeButton) {
+        delete cart[removeButton.dataset.remove];
+        updateCart();
+      }
+      const filterButton = event.target.closest('[data-filter]');
+      if (filterButton) {
+        document.querySelectorAll('.filter-button').forEach(button => button.classList.toggle('active', button === filterButton));
+        const filter = filterButton.dataset.filter;
+        let visibleCount = 0;
+        document.querySelectorAll('.product-card').forEach(card => {
+          const visible = filter === 'all' || card.dataset.category.split(' ').includes(filter);
+          card.hidden = !visible;
+          if (visible) visibleCount++;
+        });
+        document.getElementById('no-results').style.display = visibleCount ? 'none' : 'block';
+      }
+    });
+    document.getElementById('open-cart').addEventListener('click', () => setCartOpen(true));
+    document.getElementById('close-cart').addEventListener('click', () => setCartOpen(false));
+    overlay.addEventListener('click', () => setCartOpen(false));
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') setCartOpen(false); });
+    document.getElementById('sort').addEventListener('change', event => {
+      const cards = [...document.querySelectorAll('.product-card')];
+      const mode = event.target.value;
+      cards.sort((a, b) => mode === 'low' ? Number(a.dataset.price) - Number(b.dataset.price) : mode === 'high' ? Number(b.dataset.price) - Number(a.dataset.price) : ['Arc 65', 'Mono 60', 'Shift 98', 'Heavy Metal'].indexOf(a.dataset.name) - ['Arc 65', 'Mono 60', 'Shift 98', 'Heavy Metal'].indexOf(b.dataset.name));
+      cards.forEach(card => grid.insertBefore(card, document.getElementById('no-results')));
+    });
+    document.getElementById('checkout').addEventListener('click', () => {
+      if (Object.keys(cart).length) showToast('Checkout is coming soon');
+      else showToast('Your bag is empty');
+    });
+    updateCart();
+  </script>
+</body>
+</html>
